@@ -16,7 +16,6 @@ angular.module('app')
         $.getJSON(location + file)
           .then(function(data){
             $scope.masterSchedule = data;
-            alert($scope.masterSchedule);
           }
         );
     }
