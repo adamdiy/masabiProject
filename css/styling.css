@@ -1,5 +1,5 @@
 body {
-  background-image: url('http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/reader/bg.png');
+  background: #8EBAC7;
   -webkit-background-size: cover;
      -moz-background-size: cover;
        -o-background-size: cover;
