@@ -12,8 +12,11 @@ angular.module('app')
       
       $scope.open = function () {
 					ngDialog.open({
-          template: '<p>my template</p>',
-          plain: true
+          template: './views/detail-journey.html',
+          className: 'ngdialog-theme-plain',
+          overlay: false,
+          data: $scope.masterSchedule,
+          scope: $scope
           });
         }
       
