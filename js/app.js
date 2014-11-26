@@ -31,16 +31,6 @@ angular.module('app')
 			}
 		})
 		
-		
-  .directive('passObject', ['ngDialog', function(ngDialog) {
-    return {
-        restrict: 'A',
-        scope: { passedObject: '=' },
-        template: "<div>This is the value passed in = {{passedObject.value}}!</div>"
-    }
-  }])
-		
-		
 	.service("journeyDataSvc", ["$http", function journeyDataSvc($http){
 		
 		var masterJson = [];
