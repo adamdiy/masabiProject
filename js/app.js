@@ -10,12 +10,13 @@ angular.module('app')
       
       })
       
-      $scope.open = function () {
-					ngDialog.open({
-          template: './views/detail-journey.html',
+      $scope.open = function (trip) {
+        
+         ngDialog.open({
+          templateUrl: './views/detail-journey.html',
           className: 'ngdialog-theme-plain',
           overlay: false,
-          data: $scope.masterSchedule,
+          data: trip,
           scope: $scope
           });
         }
@@ -79,6 +80,17 @@ angular.module('app')
 		}]);
 
 	
+// var detailCtrl = function ($scope, fullScreenDetail, ndDialog, trips, trip) {
+
+// $scope.trips = trips;
+//   $scope.trip = trip;
+//   $scope.selected = {
+//     trip: $scope.trips[0]
+//   };
+//   console.log($scope);
+
+// }
+
 
 function main() {
 }
