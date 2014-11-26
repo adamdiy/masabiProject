@@ -1,0 +1,12 @@
+<div class="ngdialog-message" ng-show="ngDialogData">
+				<b>Your journey details</b>
+				<div> </div>
+				<ul class="mt">
+					<li>Departs from:  {{ ngDialogData["originStation"] }} </li>
+					<li>Arrives:  {{ ngDialogData["destinationStation"] }}</li>
+					<li>Operated by:  {{ ngDialogData["operator"] }}</li>
+					<li>Depature time:  {{ ngDialogData["startTime"] }}</li>
+					<li>Arrival time:  {{ ngDialogData["arrivalTime"] }}</li>
+				</ul>
+				<div class="mt">Need to add trip duration</div>
+			</div>
