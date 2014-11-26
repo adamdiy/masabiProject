@@ -1,16 +1,23 @@
   
-angular.module('app', []);
+angular.module('app', ['ngDialog']);
 	
 	
 angular.module('app')
-	.controller('loadJsonData', ["$scope","journeyDataSvc", function loadJsonData($scope,journeyDataSvc) {
+	.controller('mainCtrl', ["$scope","journeyDataSvc", "ngDialog", function loadJsonData($scope,journeyDataSvc, ngDialog) {
     
       journeyDataSvc.returnAllJourneys().then(function(resolveData) {
       $scope.masterSchedule = resolveData.data;
-      //alert(JSON.stringify($scope.masterSchedule));
+      
       })
-      // alert($scope.masterSchedule);
-
+      
+      $scope.open = function () {
+					ngDialog.open({
+          template: '<p>my template</p>',
+          plain: true
+          });
+        }
+      
+      
     }])
     
   .directive("basicJourney", function(){
@@ -19,6 +26,7 @@ angular.module('app')
 				templateUrl: "./views/basic-journey.html"
 			}
 		})
+		
 		
 	.service("journeyDataSvc", ["$http", function journeyDataSvc($http){
 		
@@ -38,25 +46,20 @@ angular.module('app')
     //     );
     // }
     
-  // this.returnAllJourneys = function returnAllJourneys () {
-  //     $http.get(location + file).then(function(response) {
-  //       masterJson = response.data;
-  //       return masterJson.resolve;
-  //         }
-  //       );
-  //       return masterJson.resolve;
-  //   }
+    // this.returnAllJourneys = function returnAllJourneys () {
+    //     $http.get(location + file).then(function(response) {
+    //       masterJson = response.data;
+    //       return masterJson.resolve;
+    //         }
+    //       );
+    //       return masterJson.resolve;
+    //   }
     
     return {
 			returnAllJourneys: function () {
 				return $http.get(location + file).success(function(data, status, headers, config){
-				// 	$scope.todos = data;
-					//console.log($scope.todos);
-					alert(data);
 					return data;
 				});
-				//alert(typeof data);
-				//return data;
 			},
     }
       
