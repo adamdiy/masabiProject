@@ -33,10 +33,11 @@
                 return [{"order":0,"originStation":"Brighton","destinationStation":"London Victoria","operator":"Southern Trains","startTime":"23:50:00","arrivalTime":"01:00:00"}]
             });
             
-            var x = journeyDataSvc.testing();
-            console.log(x);
-            expect(x).toBe("data");
-            expect(journeyDataSvc.returnAllJourneys()).toBe("Hello");
+            console.log(journeyDataSvc.returnAllJourneys());
+            //var x = journeyDataSvc.returnAllJourneys(); //error here somewhere as jDS not defined or doesnt have testing
+            //console.log(x);
+            //expect(x).toBe("data");
+            expect(journeyDataSvc.returnAllJourneys()).toBe("hello");
         });
 
     });

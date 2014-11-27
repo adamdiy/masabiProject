@@ -3,8 +3,8 @@ angular.module('app', ['ngDialog']);
 	
 	
 angular.module('app')
-	.controller('mainCtrl', ["$scope","journeyDataSvc", "ngDialog", function loadJsonData($scope,journeyDataSvc, ngDialog) {
-    
+	.controller('mainCtrl', ["$scope","journeyDataSvc", "ngDialog", function mainCtrl($scope,journeyDataSvc, ngDialog) {
+      $scope.masterSchedule = "hi";
       journeyDataSvc.returnAllJourneys().then(function(resolveData) {
       $scope.masterSchedule = resolveData.data;
       
