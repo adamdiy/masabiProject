@@ -58,10 +58,51 @@ angular.module('app')
     //       return masterJson.resolve;
     //   }
     
+    function addDuration (record) {
+          
+          var timeDepart = record.startTime.split(":");
+          var timeArrive = record.arrivalTime.split(":");
+          
+          for(var i=0; i<timeDepart.length; i++) { timeDepart[i] = +timeDepart[i]; }
+          for(var i=0; i<timeArrive.length; i++) { timeArrive[i] = +timeArrive[i]; }
+          
+          if (!record.startTime || !record.arrivalTime) {
+              record.duration = "N/A";
+              return;
+          }
+          
+          var setHours = function(hours) {
+            parseInt(hours, 10);
+            // if (hours == 12 && !time[3]) {
+            //     hours = 0;
+            // }
+            // else {
+            //     hours += (hours < 12 && time[3]) ? 12 : 0;
+            // }
+          };
+          
+          setHours(timeDepart[0]);
+          setHours(timeArrive[0]);
+          
+          if(timeArrive[0]<timeDepart[0]) timeArrive[0] += 24;
+
+          var duration = ((timeArrive[0]*60)+timeArrive[1])-((timeDepart[0]*60)+timeDepart[1]);
+          duration = parseInt(duration/60)+"h"+(duration%60)+"m";
+        
+          record.duration = duration;
+      
+        }
+    
+    
+    
     return {
 			returnAllJourneys: function () {
 				return $http.get(location + file).success(function(data, status, headers, config){
-					return data;
+  					masterJson = data;
+  					masterJson.forEach(function(record){
+  					  addDuration(record)});
+  				alert(JSON.stringify(masterJson));
+					return masterJson;
 				});
 			},
     }
