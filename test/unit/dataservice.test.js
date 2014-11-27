@@ -2,7 +2,7 @@
     //"use strict";
 
     describe("data service", function() {
-        var catalogue, httpBackend;
+        var journeyDataSvc, httpBackend;
 
         beforeEach(module("app"));
 
@@ -15,30 +15,28 @@
             });
         }));
 
-        beforeEach(inject(function(_catalogue_, $httpBackend) {
-            catalogue = _catalogue_;
+        beforeEach(inject(function(_journeyDataSvc_, $httpBackend) {
+            journeyDataSvc = _journeyDataSvc_;
             httpBackend = $httpBackend;
         }));
 
 
 
         beforeEach(function() {
-            httpBackend.whenGET("../datalists/kids1.csv").respond({
-                data: "Title/Programme, Language, MY, NAME \n 1, 2, 3, 4"
+            httpBackend.whenGET("./data/journeys.json").respond({
+                data: [{"order":0,"originStation":"Brighton","destinationStation":"London Victoria","operator":"Southern Trains","startTime":"23:50:00","arrivalTime":"01:00:00"}]
             });
         })
 
-        it("saeu", function() {
+        it("Returns expected data", function() {
             httpBackend.whenGET("/forest").respond(function(){
-                console.log("victory");
-
-                return { data: "Title/Programme, Language, MY, NAME \n 1, 2, 3, 4" };
+                return [{"order":0,"originStation":"Brighton","destinationStation":"London Victoria","operator":"Southern Trains","startTime":"23:50:00","arrivalTime":"01:00:00"}]
             });
             
-            var x = catalogue.testing();
+            var x = journeyDataSvc.testing();
             console.log(x);
             expect(x).toBe("data");
-            expect(catalogue.getFullCatalogue()).toBe("Hello");
+            expect(journeyDataSvc.returnAllJourneys()).toBe("Hello");
         });
 
     });

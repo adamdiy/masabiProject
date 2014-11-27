@@ -11,7 +11,6 @@ angular.module('app')
       })
       
       $scope.open = function (trip) {
-        
          ngDialog.open({
           templateUrl: './views/detail-journey.html',
           className: 'ngdialog-theme-plain',
@@ -23,6 +22,8 @@ angular.module('app')
       
       
     }])
+    
+    
     
   .directive("basicJourney", function(){
 			return {
@@ -64,7 +65,7 @@ angular.module('app')
           var timeArrive = record.arrivalTime.split(":");
           
           for(var i=0; i<timeDepart.length; i++) { timeDepart[i] = +timeDepart[i]; }
-          for(var i=0; i<timeArrive.length; i++) { timeArrive[i] = +timeArrive[i]; }
+          for(i=0; i<timeArrive.length; i++) { timeArrive[i] = +timeArrive[i]; }
           
           if (!record.startTime || !record.arrivalTime) {
               record.duration = "N/A";
@@ -73,12 +74,6 @@ angular.module('app')
           
           var setHours = function(hours) {
             parseInt(hours, 10);
-            // if (hours == 12 && !time[3]) {
-            //     hours = 0;
-            // }
-            // else {
-            //     hours += (hours < 12 && time[3]) ? 12 : 0;
-            // }
           };
           
           setHours(timeDepart[0]);
@@ -101,26 +96,17 @@ angular.module('app')
   					masterJson = data;
   					masterJson.forEach(function(record){
   					  addDuration(record)});
-  				alert(JSON.stringify(masterJson));
 					return masterJson;
 				});
 			},
+			returnFilteredJourneys: function () {
+			    //return filteredJson;
+			}
     }
       
 		
 		}]);
 
-	
-// var detailCtrl = function ($scope, fullScreenDetail, ndDialog, trips, trip) {
-
-// $scope.trips = trips;
-//   $scope.trip = trip;
-//   $scope.selected = {
-//     trip: $scope.trips[0]
-//   };
-//   console.log($scope);
-
-// }
 
 
 function main() {
