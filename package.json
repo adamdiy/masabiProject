@@ -1,0 +1,34 @@
+{
+  "name": "masabiProject",
+  "version": "1.0.0",
+  "description": "train schedule and details",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adamdiy/masabiProject.git"
+  },
+  "author": "adamdiy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamdiy/masabiProject/issues"
+  },
+  "homepage": "https://github.com/adamdiy/masabiProject",
+  "dependencies": {
+    "bower": "^1.3.12",
+    "jasmine": "^2.1.0",
+    "karma": "^0.12.28",
+    "karma-jasmine": "^0.3.1"
+  },
+  "devDependencies": {
+    "jasmine-given": "^2.6.2",
+    "karma-chrome-launcher": "^0.1.5",
+    "karma-coverage": "^0.2.6",
+    "protractor": "^1.4.0"
+  }
+}

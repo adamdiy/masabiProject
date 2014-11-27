@@ -1,48 +1,49 @@
 (function() {
     "use strict";
 
-    describe("Search catalogue controller", function() {
+    describe("Data service", function() {
 
-        //mock the catalogue service
-        var scope, catalogue = {
-            fullCatalogue: [{test: "hello"}, {test: "hola"}, {test: "testin"}],
-            filteredCatalogue: [{test: "hello"}, {test: "hola"}, {test: "testin"}],
-            getFullCatalogue: function() {
-                return catalogue.fullCatalogue;
+        //mock data service
+        var scope;
+        var journeyDataSvc = {
+            fullSchedule: [{"order":0,"originStation":"Brighton","destinationStation":"London Victoria","operator":"Southern Trains","startTime":"23:50:00","arrivalTime":"01:00:00"},{"order":3,"originStation":"Brighton","destinationStation":"London Bridge","operator":"Southern Trains","startTime":"15:51:00","arrivalTime":"18:35:00"},{"order":4,"originStation":"Brighton","destinationStation":"London Victoria","operator":"Southern Trains","startTime":"12:43:00","arrivalTime":"14:23:00"},{"order":1,"originStation":"Brighton","destinationStation":"London Bridge","startTime":"10:25:00","arrivalTime":"12:00:00"},{"order":2,"originStation":"Brighton","destinationStation":"London Victoria","operator":"Southern Trains","startTime":"17:00:00","arrivalTime":"19:00:00"}],
+            filteredSchedule: [{"order":0,"originStation":"Brighton","destinationStation":"London Victoria","operator":"Southern Trains","startTime":"23:50:00","arrivalTime":"01:00:00"}],
+            returnAllJourneys: function() {
+                return journeyDataSvc.fullSchedule;
             },
             search: function() {
-                return catalogue.filteredCatalogue;
+                return journeyDataSvc.filteredSchedule;
             },
             filterProducts: function() {
-                catalogue.filteredCatalogue = catalogue.fullCatalogue[1];
+                journeyDataSvc.filteredSchedule = journeyDataSvc.fullSchedule[1];
             }
         };
         
         //load module containing the app first
-        beforeEach(module("app"));
+        beforeEach(module("app"), ['ngDialog']);
 
-        //create mock scope and load controller passing it a mocked $scope and catalogue
+        //create mock scope and load controller passing it a mocked $scope and schedule
         //(We only want to test the controllers functionality)
         beforeEach(inject(function($rootScope, $controller) {
             scope = $rootScope.$new();
-            $controller('SearchCatalogueCtrl', { $scope: scope, catalogue: catalogue });
+            $controller('mainCtrl', { $scope: scope, journeyDataSvc: journeyDataSvc });
         }));
 
-        //test that scope.matches starts with the full catalogue!
-        it("should initialize scope.matches to the full catalogue", function() {
-            expect(scope.matches).toEqual(catalogue.fullCatalogue);
+        //test that scope.matches starts with the full schedule!
+        it("should initialize scope.matches to the full schedule", function() {
+            expect(scope.masterSchedule).toEqual(journeyDataSvc.fullSchedule);
         });
 
-        //test that scope.matches is changed when searchCatalogue() has been called
-        it("should set matches to the return value of catalogue.search when searchCatalogue() is called", function() {
-            scope.searchCatalogue();
-            expect(scope.matches).toEqual(catalogue.filteredCatalogue);
+        //test that scope.matches is changed when searchSchedule() has been called
+        it("should set matches to the return value of schedule.search when searchSchedule() is called", function() {
+            //scope.searchSchedule();
+            expect(scope.masterSchedule).toEqual(journeyDataSvc.filteredSchedule);
         });
 
         //test that scope matches is changed when filter() has been called
-        it("should set matches equal to filteredCatalogue after filtering it", function() {
-            scope.filter();
-            expect(scope.matches).toEqual(catalogue.filteredCatalogue);
+        it("should set matches equal to filteredSchedule after filtering it", function() {
+            //scope.filter();
+            expect(scope.masterSchedule).toEqual(journeyDataSvc.filteredSchedule);
         });
 
     });
