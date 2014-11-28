@@ -1,14 +1,16 @@
-  
 angular.module('app', ['ngDialog']);
-	
 	
 angular.module('app')
 	.controller('mainCtrl', ["$scope","journeyDataSvc", "ngDialog", function mainCtrl($scope,journeyDataSvc, ngDialog) {
       $scope.masterSchedule = "hi";
-      journeyDataSvc.returnAllJourneys().then(function(resolveData) {
+      $scope.masterSchedule = journeyDataSvc.returnAllJourneys().then(function(resolveData) {
       $scope.masterSchedule = resolveData.data;
-      
       })
+      //remove everything after .then to here for unit tests to work
+      
+      // .then(function(resolveData) {
+      // $scope.masterSchedule = resolveData.data;
+      // })
       
       $scope.open = function (trip) {
          ngDialog.open({
