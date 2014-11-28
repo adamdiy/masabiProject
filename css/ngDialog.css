@@ -81,8 +81,8 @@
   height: 100%;
   background: white;
   -webkit-backface-visibility: hidden;
-  -webkit-animation: ngdialog-fadein 0.5s;
-  animation: ngdialog-fadein 0.5s;
+  -webkit-animation: ngdialog-fadein 0.3s;
+  animation: ngdialog-fadein 0.3s;
 }
 
 .ngdialog.ngdialog-closing .ngdialog-content {
@@ -99,17 +99,30 @@
   border-radius: 3px;
   color: #bbb;
   content: '\00D7';
-  font-size: 50px;
+  font-size:80px;
   font-weight: 400;
   height: 30px;
   line-height: 26px;
   position: absolute;
-  right: 3px;
+  right: 10px;
   text-align: center;
-  top: 3px;
-  width: 30px;
+  top: 10px;
+  /*width: 30px;*/
 }
 
 body.ngdialog-open {
   overflow: hidden;
+}
+
+.ngdialog-message {
+  -webkit-animation: ngdialog-flyin .5s;
+  animation: ngdialog-flyin .5s;
+  border-radius: 5px;
+  color: #444;
+  font-family: 'Helvetica',sans-serif;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  margin: 0 auto;
+  padding: 1em;
+  
 }

@@ -25,12 +25,17 @@ angular.module('app')
       
     }])
     
-    
-    
   .directive("basicJourney", function(){
+		return {
+			restrict: "E",
+			templateUrl: "./views/basic-journey.html"
+		}
+	})
+    
+  .directive("fixedHeader", function(){
 			return {
 				restrict: "E",
-				templateUrl: "./views/basic-journey.html"
+				templateUrl: "./views/fixed-header.html"
 			}
 		})
 		
@@ -47,19 +52,9 @@ angular.module('app')
     // function addToDb () {
     //     $http.get(location + file).then(function(response) {
     //     $scope.masterSchedule = response.data;
-    //     alert($scope.masterSchedule);
     //       }
     //     );
     // }
-    
-    // this.returnAllJourneys = function returnAllJourneys () {
-    //     $http.get(location + file).then(function(response) {
-    //       masterJson = response.data;
-    //       return masterJson.resolve;
-    //         }
-    //       );
-    //       return masterJson.resolve;
-    //   }
     
     function addDuration (record) {
           
@@ -87,9 +82,9 @@ angular.module('app')
           duration = parseInt(duration/60)+"h"+(duration%60)+"m";
         
           record.duration = duration;
+          
       
         }
-    
     
     
     return {

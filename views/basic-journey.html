@@ -1,15 +1,15 @@
 
     <div class="journey row"  ng-click="open(trip)">
       <div class="col-xs-3">
-        <p class="sourceDest">from: {{trip["originStation"]}}</p>
+        <p class="sourceDest">{{trip["originStation"]}}</p>
       </div>
       <div class="col-xs-3">
-        <p class="timetable">to: {{trip["destinationStation"]}}</p>
+        <p class="timetable">{{trip["destinationStation"]}}</p>
       </div>
       <div class="col-xs-3">
-        <p class="extra">departs: {{trip["startTime"] | date:'@HH:mm' }}</p>
+        <p class="extra">{{trip["startTime"]}}</p>
       </div>
       <div class="col-xs-3">
-        <p class="extra">arrives: {{trip["arrivalTime"]}}</p>
+        <p class="extra">{{trip["arrivalTime"]}}</p>
       </div>
     </div>

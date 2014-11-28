@@ -13,12 +13,13 @@
   </head>
 <body>
 
-<!--<navbar></navbar>-->
+
 
     <div ng-controller="mainCtrl" class="alljourneys">
-      <div class="journey" ng-repeat="trip in masterSchedule">
-        <basic-journey></basic-journey>
-      </div>
+      <fixed-header></fixed-header>
+        <div class="journey" ng-repeat="trip in masterSchedule | orderBy: 'order'">
+          <basic-journey></basic-journey>
+        </div>
    
 
 

@@ -4,6 +4,7 @@ body {
      -moz-background-size: cover;
        -o-background-size: cover;
           background-size: cover;
+  padding-top: 30px;
 }
 
 p {
@@ -24,7 +25,7 @@ p {
   background: rgba(255,255,255,.9);
   border-spacing: 2px;
   border-color: gray;
-  font-family: arial,sans-serif;
+  font-family: 'Helvetica',sans-serif;
   border-bottom: 1px #e5e5e5 solid;
 }
 
@@ -33,26 +34,35 @@ p {
 }
 
 .journey {
-  cursor: pointer;
+  
   padding-top: 7px;
   padding-bottom: 7px;
+  text-align: center;
   
 }
+
+.journey .row {
+  cursor: pointer;
+}
+
 
 .journey .sourceDestDest {
   margin-left: 20px;
 }
 
-.journey .timetable {
-  font-weight: bold;
-}
+.header {
+  top: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 1030;
+  height: 40px;
+  color: black;
+  background-color: #C6C8CD;
+  text-align: center;
+  font-weight:bold;
 
-.journey .extra {
-  margin-right: 20px;
-}
-
-.journey .extra {
-  text-align: right;
 }
 
 .description {
@@ -65,3 +75,4 @@ p {
   margin-top: 0px;
   font-size: 23px;
 }
+
