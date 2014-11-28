@@ -1,30 +1,17 @@
 angular.module('app', ['ngDialog']);
-	
+
+//app is main Angular instance, ngDialog controls pop-up full screen and is loaded on index.html
+
 angular.module('app')
-	.controller('mainCtrl', ["$scope","journeyDataSvc", "ngDialog", function mainCtrl($scope,journeyDataSvc, ngDialog) {
-      $scope.masterSchedule = "hi";
-      $scope.masterSchedule = journeyDataSvc.returnAllJourneys().then(function(resolveData) {
-      $scope.masterSchedule = resolveData.data;
-      })
-      //remove everything after .then to here for unit tests to work
-      
-      // .then(function(resolveData) {
-      // $scope.masterSchedule = resolveData.data;
-      // })
-      
-      $scope.open = function (trip) {
-         ngDialog.open({
-          templateUrl: './views/detail-journey.html',
-          className: 'ngdialog-theme-plain',
-          overlay: false,
-          data: trip,
-          scope: $scope
-          });
-        }
-      
-      
-    }])
+
+  .directive("fixedHeader", function(){
+			return {
+				restrict: "E",
+				templateUrl: "./views/fixed-header.html"
+			}
+		})
     
+    //view for a row display of a journey on first page
   .directive("basicJourney", function(){
 		return {
 			restrict: "E",
@@ -32,82 +19,4 @@ angular.module('app')
 		}
 	})
     
-  .directive("fixedHeader", function(){
-			return {
-				restrict: "E",
-				templateUrl: "./views/fixed-header.html"
-			}
-		})
-		
-	.service("journeyDataSvc", ["$http", function journeyDataSvc($http){
-		
-		var masterJson = [];
-    var location = "./data/";
-    var file = ["journeys.json"];
-
-    // files.forEach(function(file){
-    //     addToDb(file);
-    // });
-
-    // function addToDb () {
-    //     $http.get(location + file).then(function(response) {
-    //     $scope.masterSchedule = response.data;
-    //       }
-    //     );
-    // }
-    
-    function addDuration (record) {
-          
-          var timeDepart = record.startTime.split(":");
-          var timeArrive = record.arrivalTime.split(":");
-          
-          for(var i=0; i<timeDepart.length; i++) { timeDepart[i] = +timeDepart[i]; }
-          for(i=0; i<timeArrive.length; i++) { timeArrive[i] = +timeArrive[i]; }
-          
-          if (!record.startTime || !record.arrivalTime) {
-              record.duration = "N/A";
-              return;
-          }
-          
-          var setHours = function(hours) {
-            parseInt(hours, 10);
-          };
-          
-          setHours(timeDepart[0]);
-          setHours(timeArrive[0]);
-          
-          if(timeArrive[0]<timeDepart[0]) timeArrive[0] += 24;
-
-          var duration = ((timeArrive[0]*60)+timeArrive[1])-((timeDepart[0]*60)+timeDepart[1]);
-          duration = parseInt(duration/60)+"h"+(duration%60)+"m";
-        
-          record.duration = duration;
-          
-      
-        }
-    
-    
-    return {
-			returnAllJourneys: function () {
-				return $http.get(location + file).success(function(data, status, headers, config){
-  					masterJson = data;
-  					masterJson.forEach(function(record){
-  					  addDuration(record)});
-					return masterJson;
-				});
-			},
-			returnFilteredJourneys: function () {
-			    //return filteredJson;
-			}
-    }
-      
-		
-		}]);
-
-
-
-function main() {
-}
-
-$(document).ready(main);
 
