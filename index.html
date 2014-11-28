@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Journey information</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
     <link rel="stylesheet" style="text/css" href="./css/styling.css">
     <link rel="stylesheet" style="text/css" href="./css/ngDialog.css">
   </head>
 <body>
 
-<!--<navbar></navbar>-->
 
+<!--use orderBy below for quick ordering of records-->
     <div ng-controller="mainCtrl" class="alljourneys">
-      <div class="journey" ng-repeat="trip in masterSchedule">
-        <basic-journey></basic-journey>
-      </div>
+      <fixed-header></fixed-header>
+        <div class="journey" ng-repeat="trip in masterSchedule | orderBy: 'order'">
+          <basic-journey></basic-journey>
+        </div>
    
 
 
@@ -26,8 +26,11 @@
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+    <!--directive views are loaded in app.js, where app is also initialized-->
     <script src="./js/app.js"></script>
     <script src="./js/ngDialog.js"></script>
+    <script src="js/controllers/mainCtrl.js"></script>
+		<script src="js/services/journeyDataSvc.js"></script>
 
   </body>
 </html>
