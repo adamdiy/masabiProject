@@ -4,19 +4,17 @@ angular.module('app', ['ngDialog']);
 
 angular.module('app')
 
-  .directive("fixedHeader", function(){
-			return {
-				restrict: "E",
-				templateUrl: "./views/fixed-header.html"
-			}
-		})
-    
-    //view for a row display of a journey on first page
-  .directive("basicJourney", function(){
-		return {
-			restrict: "E",
-			templateUrl: "./views/basic-journey.html"
-		}
-	})
-    
+    .directive("fixedHeader", function () {
+    return {
+        restrict: "E",
+        templateUrl: "./views/fixed-header.html"
+    };
+})
 
+//view for a row display of a journey on first page
+.directive("basicJourney", function () {
+    return {
+        restrict: "E",
+        templateUrl: "./views/basic-journey.html"
+    };
+});
